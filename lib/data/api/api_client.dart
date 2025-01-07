@@ -206,3 +206,4 @@ class MultipartBody {
 
   MultipartBody(this.key, this.file);
 }
+
