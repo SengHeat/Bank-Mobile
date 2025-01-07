@@ -123,6 +123,7 @@ class _MyAppState extends State<MyApp> {
             initialRoute: RoutesName.homeScreen,
           );
         });
+
       },
     );
   }
