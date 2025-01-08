@@ -8,7 +8,6 @@
 .buildlog/
 .history
 .svn/
-.lib/constant/routes/api/app_constant.dart
 migrate_working_dir/
 
 # IntelliJ related
@@ -42,3 +41,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+lib/constant/routes/api/app_constant.dart
