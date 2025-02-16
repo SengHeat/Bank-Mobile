@@ -1,4 +1,5 @@
 
+import 'package:bank_mobile_app/component/style/color_resources.dart';
 import 'package:bank_mobile_app/controllers/responsive_font_size_controller.dart';
 import 'package:bank_mobile_app/theme/color_resources.dart';
 import 'package:flutter/cupertino.dart';

@@ -5,6 +5,7 @@ import 'package:bank_mobile_app/constant/routes/app/routes.dart';
 import 'package:bank_mobile_app/controllers/localication_controller.dart';
 import 'package:bank_mobile_app/controllers/responsive_font_size_controller.dart';
 import 'package:bank_mobile_app/controllers/theme_controller.dart';
+import 'package:bank_mobile_app/theme/app_theme.dart';
 import 'package:bank_mobile_app/utils/message.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -95,8 +96,8 @@ class _MyAppState extends State<MyApp> {
           return GetMaterialApp(
             navigatorKey: navigatorKey,
             debugShowCheckedModeBanner: false,
-            theme: ThemeData.light(),
-            darkTheme: ThemeData.dark(),
+            theme: AppThemes.lightTheme,
+            darkTheme: AppThemes.darkTheme,
             themeMode: themeController.themeMode.value,
             translations: Messages(languages: widget.languages),
             locale: localizationController.locale,

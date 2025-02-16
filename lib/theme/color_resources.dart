@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ColorResources {
   //TODO Method to get Primary Color dynamically based on theme mode
-  static Color getPrimaryColor(BuildContext context) {
+  static Color  getPrimaryColor(BuildContext context) {
     return Theme.of(context).brightness != Brightness.dark
         ? Color(0xFF1B3351)
         : Color(0xFF1B3351);

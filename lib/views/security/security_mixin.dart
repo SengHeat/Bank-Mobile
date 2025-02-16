@@ -1,6 +1,7 @@
 
 import 'package:bank_mobile_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,13 +13,14 @@ mixin SecurityMixin {
     return canCheckBiometrics;
   }
   Future<void> _navigateToHomeScreen(String routeName) async {
-    final url = Uri.parse("https://app.scholarar.com/thank-you");
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      // Handle the error when the URL cannot be launched
-      print("Could not launch $url");
-    }
+    Get.toNamed(routeName);
+    // final url = Uri.parse("https://app.scholarar.com/thank-you");
+    // if (await canLaunchUrl(url)) {
+    //   await launchUrl(url, mode: LaunchMode.externalApplication);
+    // } else {
+    //   // Handle the error when the URL cannot be launched
+    //   print("Could not launch $url");
+    // }
   }
 
   Future<void> authenticateWithBiometrics({required String routeName}) async {

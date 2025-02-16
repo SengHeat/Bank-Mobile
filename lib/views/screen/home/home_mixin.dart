@@ -1,6 +1,6 @@
 
-import 'package:bank_mobile_app/utils/color_resources.dart';
-import 'package:bank_mobile_app/utils/style.dart';
+import 'package:bank_mobile_app/component/style/color_resources.dart';
+import 'package:bank_mobile_app/component/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

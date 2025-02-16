@@ -1,3 +1,4 @@
+import 'package:bank_mobile_app/constant/routes/app/route_name.dart';
 import 'package:bank_mobile_app/controllers/theme_controller.dart';
 import 'package:bank_mobile_app/theme/color_resources.dart';
 import 'package:bank_mobile_app/views/custom/custom_app_bar_widget.dart';
@@ -146,6 +147,7 @@ class ChangeThemeScreen extends StatelessWidget {
                                 CupertinoSwitch(
                                   value: isSwitched.value,
                                   onChanged: (value) {
+                                    Get.toNamed(RoutesName.generateQrScreen);
                                     isSwitched.value = value;
                                     if (value) {
                                       themeController.setThemeMode(ThemeMode.system);

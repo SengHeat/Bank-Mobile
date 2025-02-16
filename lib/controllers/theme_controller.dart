@@ -11,13 +11,11 @@ class ThemeController extends GetxController {
     _loadCurrentTheme();
   }
 
-  // Observable variable to track the theme mode
-  var themeMode = ThemeMode.system.obs; // Default to system mode
+  var themeMode = ThemeMode.system.obs;
 
   bool _darkTheme = false;
   bool get darkTheme => _darkTheme;
 
-  // Method to toggle the theme mode
   void toggleTheme() {
     if (themeMode.value == ThemeMode.system) {
       themeMode.value = ThemeMode.light;

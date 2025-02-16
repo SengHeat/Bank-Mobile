@@ -5,26 +5,29 @@ import 'package:bank_mobile_app/views/screen/simple/generate_qr.dart';
 import 'package:bank_mobile_app/views/screen/home/home_screen.dart';
 import 'package:bank_mobile_app/views/screen/simple/niti.dart';
 import 'package:bank_mobile_app/views/screen/simple/qr_scanner_screen.dart';
+import 'package:bank_mobile_app/views/screen/system/change_language_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../views/screen/system/change_theme_screen.dart';
 class Routes {
   static Route<bool?> generateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.appScreen:
         return _buildPageRoute(AppScreen());
       case RoutesName.homeScreen:
-        return _buildPageRoute(HomeScreen());
+        return _buildPageRoute(AppScreen());
       case RoutesName.scanQrScreen:
         return CupertinoPageRoute(
-          builder: (context) => const QrScannerScreen(),
+          builder: (context) => FadePageWrapper(child:  QrScannerScreen( )),
         );
       case RoutesName.generateQrScreen:
         return CupertinoPageRoute(
-          builder: (context) => const QrGenerateScreen(),
+          builder: (context) => FadePageWrapper(child:  QrGenerateScreen()),
         );
       case RoutesName.favoriteScreen:
         return CupertinoPageRoute(
-          builder: (context) => const FavoriteScreen(),
+          builder: (context) => FadePageWrapper(child:  ChangeThemeScreen()),
         );
       // case RoutesName.splashScreen:
       //   return _buildPageRoute(
@@ -61,6 +64,21 @@ class Routes {
           child: child,
         );
       },
+    );
+  }
+}
+
+class FadePageWrapper extends StatelessWidget {
+  final Widget child;
+  const FadePageWrapper({required this.child, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      opacity: 1.0,  // Full opacity for the new screen
+      duration: const Duration(milliseconds: 350),  // Fade-in effect duration
+      curve: Curves.easeInOut,  // Smooth transition
+      child: child,  // The page that is being pushed
     );
   }
 }

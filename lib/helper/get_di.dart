@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:bank_mobile_app/constant/routes/api/app_constant.dart';
+import 'package:bank_mobile_app/controllers/splash_controller.dart';
 import 'package:bank_mobile_app/controllers/theme_controller.dart';
 import 'package:bank_mobile_app/data/api/api_client.dart';
 import 'package:bank_mobile_app/data/entity/model/language_model.dart';
@@ -24,7 +25,7 @@ Future<Map<String, Map<String, String>>> init() async {
   // Get.lazyPut(() => AppVersionRepository(dioClient: Get.find(), sharedPreferences: Get.find()));
 
   //TODO Controller
-  // Get.lazyPut(() => SplashController());
+  Get.lazyPut(() => SplashController());
   // Get.lazyPut(() => LocalizationController(sharedPreferences: Get.find(), dioClient: Get.find()));
   Get.lazyPut(() => ThemeController(sharedPreferences: Get.find()));
   // Get.lazyPut(() => AuthController(authRepository: Get.find(), sharedPreferences: Get.find()));

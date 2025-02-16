@@ -1,3 +1,13 @@
+import 'package:bank_mobile_app/component/widget/custom_avatar.dart';
+import 'package:bank_mobile_app/component/widget/custom_botton.dart';
+import 'package:bank_mobile_app/component/widget/custom_card.dart';
+import 'package:bank_mobile_app/component/widget/custom_dialog.dart';
+import 'package:bank_mobile_app/component/widget/custom_divider.dart';
+import 'package:bank_mobile_app/component/widget/custom_gradiun.dart';
+import 'package:bank_mobile_app/component/widget/custom_icon_widget.dart';
+import 'package:bank_mobile_app/component/widget/custom_image_widget.dart';
+import 'package:bank_mobile_app/component/widget/custom_loading_snipper.dart';
+import 'package:bank_mobile_app/component/widget/show_custom_toast.dart';
 import 'package:bank_mobile_app/constant/routes/app/route_name.dart';
 import 'package:bank_mobile_app/data/entity/model/bank_service.dart';
 import 'package:bank_mobile_app/data/entity/model/mini_app_service.dart';
@@ -89,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> with SecurityMixin, HomeMixin {
   bool isFabVisible = false;
 
   void _scrollListener() {
+    print(Get.width);
     final currentOffset = _scrollController.offset;
     final minOffset = _scrollController.position.minScrollExtent;
     final maxOffset = _scrollController.position.maxScrollExtent;
@@ -325,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> with SecurityMixin, HomeMixin {
                         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
                         child: ClipRRect(
                           borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                          child: Image.network(list[0], width: Get.width, height: 180,fit: BoxFit.fill,),
+                          child: customImageWidget(imageUrl: list[0]),
                         ),
                       ),
                       Container(
@@ -344,12 +355,50 @@ class _HomeScreenState extends State<HomeScreen> with SecurityMixin, HomeMixin {
                           ),
                           itemCount: list.length - 2,
                           itemBuilder: (context, index) {
-                            return ClipRRect(
-                              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                              child: Image.network(list[index+1], width: Get.width, height: 180,fit: BoxFit.fill,),
-                            );
+                            return customImageWidget(width: Get.width, height: 180, imageUrl: list[index+1],);
                           },
                         ),
+                      ),
+                      customButton(text: "Hello", onPressed: (){
+                        print(Get.width);
+                        print(MediaQuery.of(context).size.width);
+                        showCustomToast();
+                      }),
+                      customButton(text: "Hello", onPressed: (){
+                        showCustomDialog(
+                          context: context,
+                          title: 'Custom Dialog',
+                          content: 'This is a custom dialog box.',
+                          onPositivePressed: () {
+                            print('Positive button pressed!');
+                          },
+                          onNegativePressed: () {
+                            print('Negative button pressed!');
+                          },
+                        );
+                      }),
+                      customCard(
+                        child: Text('This is a custom card'),
+                      ),
+                      customDivider(
+                        thickness: 3.0,
+                        color: Colors.blue,
+                      ),
+                      customGradientContainer(
+                        gradientColors: [Colors.blue, Colors.green],
+                        child: Text('Custom gradient container'),
+                      ),
+                      customAvatar(
+                        imageUrl: 'https://i.ytimg.com/vi/dFWdR3dDMX0/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYACzgWKAgwIABABGHIgUyhEMA8=&rs=AOn4CLCSwDkTWwTx0ZDQ_qeBkellO1smDg',
+                        radius: 40.0,
+                        borderWidth: 3.0,
+                        borderColor: Colors.blue,
+                      ),
+                      customLoadingSpinner(
+                        color: Colors.teal,
+                        size: 70.0,
+                        isDeterminate: true,
+                        progress: 0.1,
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
@@ -511,9 +560,9 @@ class _HomeScreenState extends State<HomeScreen> with SecurityMixin, HomeMixin {
         children: [
           GestureDetector(
             onTap: () async {
-              // authenticateWithPasscode(routeName: RoutesName.favoriteScreen);
-              final url = Uri.parse("https://app.scholarar.com/thank-you");
-              await _launchInAppWithBrowserOptions(url.toString());
+              authenticateWithPasscode(routeName: RoutesName.favoriteScreen);
+              // final url = Uri.parse("https://app.scholarar.com/thank-you");
+              // await _launchInAppWithBrowserOptions(url.toString());
             },
             child: Container(
               width: (Get.width - 40) / 2,
@@ -738,11 +787,11 @@ class _HomeScreenState extends State<HomeScreen> with SecurityMixin, HomeMixin {
         padding: const EdgeInsets.only(top: 6, left: 12, right: 12, bottom: 12.0),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            begin: Alignment.topCenter, // Start from the left
+            begin: Alignment.topCenter,
             end: Alignment.bottomCenter,  // End at the right
             colors: [
-              Color(0xffE0E0E0),  // Right color - deep blue
-              Color(0xffE0E0E0),  // Right color - deep blue
+              Color(0xffE0E0E0),
+              Color(0xffE0E0E0),
             ],
           ),
           borderRadius: BorderRadius.circular(12.0),
@@ -954,13 +1003,7 @@ class ServiceCard extends StatelessWidget with SecurityMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              service.imagePath,
-              width: 40,
-              height: 40,
-              fit: BoxFit.cover,
-              color: ColorResources.getWhiteColor(context),
-            ),
+            customIconImage(imageName: service.imagePath, radios: 40),
             const SizedBox(height: 8.0),
             Text(
               service.name,
